@@ -2,7 +2,6 @@ $(document).ready(function(){
 
   // A new game is ready to play on opening the page.
   window.onload = function(){
-    // $("#contemplation").html("<audio autoplay><source src='assets/audio/the_sky.mp3' type='audio/mpeg'></audio>");
     playBackgroundMusic("default");
     reset();
   };
@@ -232,18 +231,3 @@ $(document).ready(function(){
   ];
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

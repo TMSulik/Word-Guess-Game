@@ -12,7 +12,12 @@ body {
   padding-bottom: 4%;
 }
 
-#contempation { display: none }
+@font-face {
+  font-family: "Fondamento";
+  src: url("../fonts/Fondamento/Fondamento-Regular.ttf");
+}
+
+#contemplation { display: none }
 
 #remaining {
   background: #373737; /* charcoal */
