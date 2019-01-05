@@ -47,7 +47,10 @@ $(document).ready(function(){
     document.getElementById("clue").innerHTML = philosopher.idea;
   }
   var isALetter = function(char) {
-    return char.toLowerCase() !== char.toUpperCase();
+    if(char.length === 1) {
+      return char.toLowerCase() !== char.toUpperCase();
+    }
+    return false;
   }
   // This function will run whenever the user presses a key.
   document.onkeyup = function(event) {
