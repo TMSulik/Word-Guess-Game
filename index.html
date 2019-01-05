@@ -6,36 +6,57 @@
     <title>Word Guess Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Fondamento:100,300,400">
+
+    <script    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+
   </head>
 
-  <body>
-
+  <body >
     <div class="container">
-      <!-- Header -->
-      <div class="header clearfix banner">
-        <h3 id="logo">Presocratic Philosophers</h3>
-      </div>
-
-    <!-- Main content -->
     <section>
-      <div class="jumbotron background">
-        <h1 id="about">Guess the philosopher</h1>
+      <div class="jumbotron background container-background">
+        <span><h1 class="heading">Guess the presocratic philosopher</h1>
         <hr/>
         <div class="container">
           <div class="row">
             <div class="col-md-6">
-              <img id="portrait" src="assets/images/Thinker.jpg" alt="The Thinker">     
+              <img id="portrait" src="assets/images/Thinker.jpg" alt="The Thinker">
+              
+              <audio id="contemplation"></audio>
+              <audio id="loser"></audio>
+              <audio id="winner"></audio>
+
+              <br>
+              <p id="greek spelling" class="lowlights center"></p> 
+              <p id="lifespan" class="lowlights center"></p>   
             </div>
             <div class="col-md-6">
               <div class="lead">
-                <p>PRESS ANY KEY TO START</p>
-                <p>Wins: 0</p>
-                <p>Current name:</p>
-                <p>_ _ _ _ _ _ _ _ _ _ </p>
-                <p>Number of guesses remaining: 12</p>
-                <p>Letters already guessed: a, x, f, g</p>
+                <p class="lowlights" id="wins">Wins: 0</p>
+                <p class="lowlights"id="losses">Losses: 0</p>
+                <h2 class="sub-heading">CLUE</h2>
+                <div class=highlights>
+                  <p id="clue"></p>
+                </div>
+                <h2 class="sub-heading">NAME</h2>
+                <div class="highlights guesses">
+                  <p id="cloze"></p>
+                </div>
+                <h2 class="sub-heading">LETTERS ELIMINATED</h2>
+                <div class="highlights guesses">
+                  <span id="eliminated">∅</span>
+                  <p id="remaining">Remaining: 6</p>
+                </div>
+                <div class="hover_background">
+                  <span class="helper"></span>
+                  <div>
+                    <p id="popup_text"></p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -45,15 +66,10 @@
 
     <!-- Footer -->
       <footer class="footer">
-        <h5>Presocratics Guessing Game © T.M. Sulik Promotions, LLC 2018</h5>
+        <h5>Presocratics Guessing Game © T.M. Sulik Promotions, LLC 2019</h5>
       </footer>
 
     </div> 
     <!-- /container -->
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
