@@ -6,12 +6,10 @@
     <title>Word Guess Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Fondamento:100,300,400">
-
     <script    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/javascript/game.js"></script>
+    <script src="assets/javascript/game.js"></script>
 
   </head>
 
@@ -19,43 +17,39 @@
     <div class="container">
     <section>
       <div class="jumbotron background container-background">
-        <span><h1 class="heading">Guess the presocratic philosopher</h1>
+        <span class="heading">Guess the presocratic philosopher</span>
         <hr/>
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <img id="portrait" src="assets/images/Thinker.jpg" alt="The Thinker">
+        <div class="row">
+          <div class="col-md-6">
+            <img id="portrait" src="assets/images/Thinker.jpg" alt="The Thinker">
               
-              <audio id="contemplation"></audio>
-              <audio id="loser"></audio>
-              <audio id="winner"></audio>
+            <audio id="contemplation"></audio>
+            <audio id="loser"></audio>              <audio id="winner"></audio>
 
-              <br>
-              <p id="greek spelling" class="lowlights center"></p> 
-              <p id="lifespan" class="lowlights center"></p>   
-            </div>
-            <div class="col-md-6">
-              <div class="lead">
-                <p class="lowlights" id="wins">Wins: 0</p>
-                <p class="lowlights"id="losses">Losses: 0</p>
-                <h2 class="sub-heading">CLUE</h2>
-                <div class=highlights>
-                  <p id="clue"></p>
-                </div>
-                <h2 class="sub-heading">NAME</h2>
-                <div class="highlights guesses">
-                  <p id="cloze"></p>
-                </div>
-                <h2 class="sub-heading">LETTERS ELIMINATED</h2>
-                <div class="highlights guesses">
-                  <span id="eliminated">∅</span>
-                  <p id="remaining">Remaining: 6</p>
-                </div>
-                <div class="hover_background">
-                  <span class="helper"></span>
-                  <div>
-                    <p id="popup_text"></p>
-                  </div>
+            <br>
+            <p id="greek_spelling" class="lowlights center"></p> 
+            <p id="lifespan" class="lowlights center"></p>   
+          </div>
+          <div class="col-md-6">
+            <div class="lead">
+              <p class="lowlights" id="wins">Wins: 0</p>
+              <p class="lowlights" id="losses">Losses: 0</p>
+              <h2 class="sub-heading">CLUE</h2>
+              <div class=highlights>
+                <p id="clue"></p>
+              </div>
+              <h2 class="sub-heading">NAME</h2>
+              <div class="highlights guesses">
+                <p id="cloze"></p>
+              </div>
+              <h2 class="sub-heading">LETTERS ELIMINATED</h2>
+              <div class="highlights guesses">                  <span id="eliminated">∅</span>
+                <p id="remaining">Remaining: 6</p>
+              </div>
+              <div class="hover_background">
+                <span class="helper"></span>
+                <div>
+                  <p id="popup_text"></p>
                 </div>
               </div>
             </div>

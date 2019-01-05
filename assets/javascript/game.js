@@ -1,88 +1,55 @@
 $(document).ready(function(){ 
 
   // A new game is ready to play on opening the page.
-  // var x = document.getElementById("contemplation"); 
-  // function playAudio() { 
-  //   x.play(); 
-  // } 
-  // function pauseAudio() { 
-  //   x.pause(); 
-  // }
-  // console.log(x);
-
-
   window.onload = function(){
-    // audioElement.play();
-    // document.getElementById("contemplation").play();
-    $("#contemplation").html("<audio autoplay><source src='assets/audio/the_sky.mp3' type='audio/mpeg'></audio>");
-    // playAudio();
+    // $("#contemplation").html("<audio autoplay><source src='assets/audio/the_sky.mp3' type='audio/mpeg'></audio>");
+    playBackgroundMusic("default");
     reset();
   };
 
-  // function audioPlayer(){
-  //   var currentSong = 0;
-  //   $("#audioPlayer")[0].src = $("#playlist li a")[0];
-  //   $("#audioPlayer")[0].play();
-  // }
-  // document.getElementById('contemplation').play();
+  var GUESSES = {
+    wrong: 0,
+    remaining: 6
+  }
 
-	// function play_single_sound() {
-	// 	document.getElementById('contemplation').play();
-	// }
-
-
-  // $("#contemplation").get(0).play();
-
-
-  // window.onload = function() {
-  //   document.getElementById("contemplation").play();
-  // };
-
-  var randomPick = function() {
-   return Math.floor(Math.random() * 10);
-  } 
   var correctAnswer = "undetermined";
   var clozeText = "_"; 
   var philosopher = {};
   var wins = 0;
   var losses = 0;
-  var wrongGuesses = 0;
-  var wrongGuessesLeft = 6;
 
+  var randomPick = function() {
+    return Math.floor(Math.random() * 10);
+  } 
   var updatePhilosopher = function() {
     return philosophers[randomPick()];
   }
-
   var hideAnswer = function() {
     document.getElementById("portrait").src = "assets/images/Thinker.jpg";
-    document.getElementById("greek spelling").innerHTML="";
+    document.getElementById("greek_spelling").innerHTML="";
     document.getElementById("lifespan").innerHTML="";
   }
-
   var reset = function() {
-    // audioElement.play();
-
     philosopher = updatePhilosopher();
     revealClue();
-    wrongGuessesLeft = 6;
-    wrongGuesses = "";
+
+    GUESSES.wrong = "";
+    GUESSES.remaining = 6;
+
     document.getElementById("cloze").innerHTML = insertBlanksInDocument();
     document.getElementById("eliminated").innerHTML = "∅";
-    document.getElementById("remaining").innerHTML = "Remaining: " + wrongGuessesLeft;
+    document.getElementById("remaining").innerHTML = "Remaining: " + GUESSES.remaining; //wrongGuessesLeft;
     document.getElementById("wins").innerHTML = "Wins: " + wins;
     document.getElementById("losses").innerHTML = "Losses: " + losses;
   }
-
   var revealClue = function() {
     correctAnswer = philosopher.name;
     clozeText = convertLettersToBlankSpaces(correctAnswer);
     document.getElementById("clue").innerHTML = philosopher.idea;
   }
-
   var isALetter = function(char) {
     return char.toLowerCase() !== char.toUpperCase();
   }
-
   // This function will run whenever the user presses a key.
   document.onkeyup = function(event) {
     // Determines which key was pressed.
@@ -103,41 +70,50 @@ $(document).ready(function(){
     return result;
   }
 
+  var playBackgroundMusic = function(str) {
+    switch(str) {
+      case "won":
+        $("#contemplation").html("autostart='false'");
+        $("#winner").html("<audio autoplay><source src='assets/audio/tom_sawyer.mp3' type='audio/mpeg'></audio>");
+        break;
+      case "lost":
+        $("#contemplation").html("autostart='false'");
+        $("#loser").html("<audio controls autoplay id='loser'><source src='assets/audio/tommy_doesnt_know.mp3' type='audio/mpeg'></audio>");
+        break;
+      default: 
+        $("#winner").html("autostart='false'");
+        $("#loser").html("autostart='false'");
+        $("#contemplation").html("<audio autoplay><source src='assets/audio/the_sky.mp3' type='audio/mpeg'></audio>");
+    }
+  }
+
   var showWrongGuesses = function(char) {
-    wrongGuessesLeft--;
-    wrongGuesses += char.toUpperCase() + " ";
-    if(wrongGuessesLeft < 0) {
+    GUESSES.remaining--;
+    GUESSES.wrong += char.toUpperCase() + " ";
+    if(GUESSES.remaining < 0) {
       losses++;
       document.getElementById("losses").innerHTML = "Losses: " + losses;
       $('#popup_text').html("<h1>WHOOPS!</h1><p>Over six wrong guesses</><p>Click here for a new challenge</p>");
-      $("#contemplation").html("autostart='false'");
-      $("#loser").html("<audio controls autoplay id='loser'><source src='assets/audio/tommy_doesnt_know.mp3' type='audio/mpeg'></audio>");
+      playBackgroundMusic("lost");
       $('.hover_background').show();
       return;
     }
 
-    document.getElementById("eliminated").innerHTML = wrongGuesses;
-    document.getElementById("remaining").innerHTML = "Remaining: " + wrongGuessesLeft;
+    document.getElementById("eliminated").innerHTML = GUESSES.wrong;
+    document.getElementById("remaining").innerHTML = "Remaining: " + GUESSES.remaining;
   }
 
-
   var revealAnswer = function() {
-
-    // pauseAudio(); 
-    $("#contemplation").html("autostart='false'");
-  
-    $("#winner").html("<audio autoplay><source src='assets/audio/tom_sawyer.mp3' type='audio/mpeg'></audio>");
-    
+    playBackgroundMusic("won");     
     document.getElementById("portrait").src = philosopher.image;
-    document.getElementById("greek spelling").innerHTML = philosopher.greek;
+    document.getElementById("greek_spelling").innerHTML = philosopher.greek;
     document.getElementById("lifespan").innerHTML = philosopher.dates;
   }
 
-  // Iterate through each char in the correct answer string.
-  // If the char entered doesn't match a char in the answer,
-  // use the underscore from the cloze text.
-  // If a char is in the correct answer, insert the char at that
-  // position in the string to create the updated cloze text. 
+  // Iterate through each character in the correct answer string.
+  // If the character entered doesn't match a character in the answer, use the underscore from the cloze text.
+  // If a char is in the correct answer, insert the char at 
+  // that position in the string to create the updated cloze text. 
   var replaceBlanksWithLetters = function(char) {
     if(!isALetter(char)) {
       alert("Enter a letter");
@@ -171,9 +147,7 @@ $(document).ready(function(){
   
     $('.hover_background').click(function(){
       reset();
-      $("#winner").html("autostart='false'");
-      $("#loser").html("autostart='false'");
-      $("#contemplation").html("<audio autoplay><source src='assets/audio/the_sky.mp3' type='audio/mpeg'></audio>");
+      playBackgroundMusic("default");
       $('.hover_background').hide();
       hideAnswer();
     });
